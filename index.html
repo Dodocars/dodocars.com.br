@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Impede o iPhone/Safari de transformar telefones em links azuis automaticamente -->
+  <meta name="format-detection" content="telephone=no">
+
+  <title>Dodô Cars | Tecnologia Automotiva</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:#050505;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    a,
+    a:visited,
+    a:active{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    a[x-apple-data-detectors],
+    a[x-apple-data-detectors]:visited,
+    a[x-apple-data-detectors]:active{
+      color:inherit!important;
+      text-decoration:none!important;
+      font-size:inherit!important;
+      font-family:inherit!important;
+      font-weight:inherit!important;
+      line-height:inherit!important;
+    }
+
+    .topbar{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      background:rgba(0,0,0,.86);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(212,166,55,.22);
+    }
+
+    .nav{
+      max-width:1180px;
+      margin:auto;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      color:#fff;
+    }
+
+    .brand img{
+      width:58px;
+      height:58px;
+      object-fit:contain;
+    }
+
+    .brand strong{
+      display:block;
+      font-size:22px;
+      line-height:1;
+    }
+
+    .brand span{
+      color:#d4a637;
+      font-size:12px;
+      font-weight:bold;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:26px;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    .nav-links a{color:#ddd}
+    .nav-links a:visited{color:#ddd}
+    .nav-links a:hover{color:#d4a637}
+
+    .nav-btn,
+    .nav-btn:visited{
+      background:linear-gradient(135deg,#d4a637,#f0c85a);
+      color:#000!important;
+      padding:12px 18px;
+      border-radius:999px;
+      box-shadow:0 10px 25px rgba(212,166,55,.18);
+    }
+
+    .hero{
+      min-height:100vh;
+      padding:130px 20px 80px;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(212,166,55,.24), transparent 28%),
+        radial-gradient(circle at 15% 85%, rgba(212,166,55,.10), transparent 25%),
+        linear-gradient(120deg, #000 0%, #070707 50%, #161103 100%);
+      display:flex;
+      align-items:center;
+    }
+
+    .hero-wrap{
+      width:100%;
+      max-width:1180px;
+      margin:auto;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      align-items:center;
+      gap:60px;
+    }
+
+    .badge{
+      display:inline-block;
+      color:#d4a637;
+      background:rgba(212,166,55,.10);
+      border:1px solid rgba(212,166,55,.25);
+      padding:10px 16px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:bold;
+      margin-bottom:24px;
+    }
+
+    h1{
+      font-size:72px;
+      line-height:.98;
+      letter-spacing:-2px;
+      margin-bottom:28px;
+    }
+
+    .gold{color:#d4a637}
+
+    .hero p{
+      color:#cfcfcf;
+      font-size:19px;
+      line-height:1.75;
+      max-width:620px;
+    }
+
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:36px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:52px;
+      padding:15px 24px;
+      border-radius:14px;
+      font-weight:900;
+      transition:.25s;
+    }
+
+    .btn-primary,
+    .btn-primary:visited{
+      background:linear-gradient(135deg,#d4a637,#f0c85a);
+      color:#000!important;
+      box-shadow:0 16px 38px rgba(212,166,55,.18);
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-2px);
+      filter:brightness(1.08);
+    }
+
+    .btn-outline,
+    .btn-outline:visited{
+      border:1px solid rgba(212,166,55,.62);
+      color:#d4a637!important;
+      background:rgba(212,166,55,.04);
+    }
+
+    .btn-outline:hover{
+      background:#d4a637;
+      color:#000!important;
+    }
+
+    .logo-card{
+      position:relative;
+      background:linear-gradient(145deg, rgba(255,255,255,.06), rgba(255,255,255,.015));
+      border:1px solid rgba(212,166,55,.24);
+      border-radius:36px;
+      padding:36px;
+      box-shadow:0 30px 80px rgba(0,0,0,.55);
+    }
+
+    .logo-card:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:36px;
+      background:linear-gradient(135deg, rgba(212,166,55,.36), transparent 35%, transparent 70%, rgba(212,166,55,.20));
+      z-index:-1;
+    }
+
+    .logo-card img{
+      width:100%;
+      display:block;
+      border-radius:24px;
+      background:#000;
+    }
+
+    section{padding:90px 20px}
+    .container{max-width:1180px;margin:auto}
+
+    .section-head{text-align:center;margin-bottom:50px}
+    .section-head small{
+      color:#d4a637;
+      font-weight:900;
+      letter-spacing:5px;
+      text-transform:uppercase;
+    }
+
+    .section-head h2{
+      font-size:46px;
+      margin-top:14px;
+    }
+
+    .services{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:22px;
+    }
+
+    .card{
+      background:linear-gradient(145deg,#111,#080808);
+      border:1px solid #222;
+      border-radius:26px;
+      padding:32px;
+      min-height:210px;
+      transition:.25s;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(212,166,55,.65);
+      box-shadow:0 22px 45px rgba(0,0,0,.35);
+    }
+
+    .icon{
+      width:48px;
+      height:48px;
+      border-radius:16px;
+      background:linear-gradient(135deg,#d4a637,#f0c85a);
+      color:#000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:25px;
+      margin-bottom:22px;
+    }
+
+    .card h3{
+      color:#d4a637;
+      font-size:23px;
+      margin-bottom:12px;
+    }
+
+    .card p{
+      color:#bbb;
+      line-height:1.65;
+      font-size:16px;
+    }
+
+    .about-section{background:#0a0a0a}
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:26px;
+      align-items:stretch;
+    }
+
+    .panel{
+      background:linear-gradient(145deg,#111,#050505);
+      border:1px solid #222;
+      border-radius:30px;
+      padding:42px;
+    }
+
+    .panel h2{
+      font-size:38px;
+      margin-bottom:22px;
+    }
+
+    .panel p{
+      color:#c9c9c9;
+      line-height:1.8;
+      font-size:17px;
+      margin-bottom:14px;
+    }
+
+    .info-item{
+      display:flex;
+      gap:13px;
+      align-items:flex-start;
+      padding:17px 0;
+      border-bottom:1px solid #1e1e1e;
+      color:#ddd;
+      line-height:1.5;
+    }
+
+    .info-item b{color:#d4a637}
+
+    footer{
+      padding:42px 20px;
+      text-align:center;
+      background:#000;
+      border-top:1px solid #1f1f1f;
+      color:#888;
+      line-height:1.7;
+    }
+
+    footer strong{color:#fff}
+
+    .float-whats,
+    .float-whats:visited,
+    .float-whats:active{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:64px;
+      height:64px;
+      border-radius:50%;
+      background:linear-gradient(135deg,#d4a637,#f0c85a);
+      color:#000!important;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30px;
+      font-weight:900;
+      box-shadow:0 18px 35px rgba(0,0,0,.45);
+      z-index:1001;
+      -webkit-text-fill-color:#000!important;
+    }
+
+    @media(max-width:900px){
+      .nav-links{display:none}
+      .hero{padding-top:115px}
+      .hero-wrap{grid-template-columns:1fr;text-align:center;gap:34px}
+      h1{font-size:46px;letter-spacing:-1px}
+      .hero p{font-size:17px;margin:auto}
+      .actions{justify-content:center}
+      .logo-card{padding:18px;border-radius:24px}
+      .services{grid-template-columns:1fr}
+      .about-grid{grid-template-columns:1fr}
+      .section-head h2{font-size:34px}
+      .panel{padding:28px}
+      .brand strong{font-size:19px}
+      .brand img{width:50px;height:50px}
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <div class="nav">
+      <a class="brand" href="#">
+        <img src="logo.png" alt="Logo Dodô Cars">
+        <div>
+          <strong>Dodô Cars</strong>
+          <span>Tecnologia Automotiva</span>
+        </div>
+      </a>
+
+      <nav class="nav-links">
+        <a href="#servicos">Serviços</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#contato">Contato</a>
+        <a href="https://www.instagram.com/dodo_cars_/" target="_blank">Instagram</a>
+        <a class="nav-btn" href="https://wa.me/5511930254607" target="_blank">WhatsApp</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-wrap">
+        <div>
+          <div class="badge">Segunda a sexta • 08:00 às 18:00</div>
+
+          <h1>OFICINA <span class="gold">MECÂNICA</span></h1>
+
+          <p>
+            Tecnologia automotiva, diagnóstico eletrônico e manutenção especializada.
+            Atendimento profissional com mecânico há mais de 14 anos no setor automotivo.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="https://wa.me/5511930254607" target="_blank">Falar no WhatsApp</a>
+            <a class="btn btn-outline" href="#servicos">Ver Serviços</a>
+            <a class="btn btn-outline" href="https://www.instagram.com/dodo_cars_/" target="_blank">Instagram</a>
+          </div>
+        </div>
+
+        <div class="logo-card">
+          <img src="logo.png" alt="Dodô Cars Tecnologia Automotiva">
+        </div>
+      </div>
+    </section>
+
+    <section id="servicos">
+      <div class="container">
+        <div class="section-head">
+          <small>Serviços</small>
+          <h2>Nossos <span class="gold">Serviços</span></h2>
+        </div>
+
+        <div class="services">
+          <div class="card">
+            <div class="icon">🔧</div>
+            <h3>Mecânica Geral</h3>
+            <p>Manutenção preventiva e corretiva com qualidade, transparência e responsabilidade.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">▣</div>
+            <h3>Diagnóstico Eletrônico</h3>
+            <p>Scanner automotivo e análise técnica para identificar falhas com precisão.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">✓</div>
+            <h3>Freios</h3>
+            <p>Revisão e manutenção do sistema de freios para mais segurança no dia a dia.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">⚙</div>
+            <h3>Suspensão</h3>
+            <p>Correção de ruídos, conforto, estabilidade e segurança para seu veículo.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">◆</div>
+            <h3>Motor</h3>
+            <p>Diagnóstico, revisão e reparos especializados para melhor desempenho.</p>
+          </div>
+
+          <div class="card">
+            <div class="icon">●</div>
+            <h3>Troca de Óleo</h3>
+            <p>Lubrificação correta para proteger o motor e aumentar a durabilidade.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" class="about-section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="panel">
+            <h2>Sobre a <span class="gold">Dodô Cars</span></h2>
+            <p>
+              A Dodô Cars nasceu para oferecer atendimento automotivo com confiança,
+              qualidade, tecnologia e transparência.
+            </p>
+            <p>
+              O mecânico possui mais de 14 anos de experiência no setor automotivo,
+              atuando em diagnóstico, manutenção e reparos de veículos nacionais e importados.
+            </p>
+            <p>
+              Cada veículo é tratado com cuidado e compromisso, buscando mais segurança,
+              desempenho e tranquilidade para o cliente.
+            </p>
+          </div>
+
+          <div id="contato" class="panel">
+            <h2>Contato</h2>
+
+            <div class="info-item"><b>Endereço:</b> Avenida Carlos Barbosa Santos, 1291</div>
+            <div class="info-item"><b>Horário:</b> Segunda a sexta, das 08:00 às 18:00</div>
+            <div class="info-item"><b>WhatsApp:</b> +55 11 93025-4607</div>
+            <div class="info-item"><b>Instagram:</b> @dodo_cars_</div>
+
+            <div class="actions">
+              <a class="btn btn-primary" href="https://wa.me/5511930254607" target="_blank">Chamar no WhatsApp</a>
+              <a class="btn btn-outline" href="https://www.instagram.com/dodo_cars_/" target="_blank">Abrir Instagram</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>Dodô Cars</strong> — Tecnologia Automotiva</p>
+    <p>CNPJ: 47.820.587/0001-49</p>
+    <p>Avenida Carlos Barbosa Santos, 1291</p>
+  </footer>
+
+  <a class="float-whats" href="https://wa.me/5511930254607" target="_blank" aria-label="WhatsApp">☎</a>
+
+</body>
+</html>
