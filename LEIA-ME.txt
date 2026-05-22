@@ -1,0 +1,13 @@
+SITE DODÔ CARS
+
+Arquivos:
+- index.html
+- style.css
+- assets/logo-dodo-cars.png
+
+Como abrir:
+1. Extraia o ZIP.
+2. Abra o arquivo index.html no navegador.
+
+Para subir no GitHub/Vercel:
+Envie todos os arquivos mantendo a mesma estrutura de pastas.
